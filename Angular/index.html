@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+	<title>Assignment</title>
+	<meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="./main.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<html>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="text-align: center;">
+    <!-- <div class="navbar-header">
+      <a class="navbar-brand" href="#"></a>
+    </div> -->
+    <ul class="nav navbar-nav" >
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#"><button ng-click="sort('advertisementPrice.sellPrice')" style="color:black;">Sort By Price</button> </a></li>
+      <li><a href="#"><button ng-click="sort('realestateSummary.numberOfRooms')" style="color:black;">Sort By Number Of Rooms</button></a></li>
+      <li><a href="#"> <label>Search by Title: <input type="text" ng-model="search.title" style="color: black;"/></label></a></li>
+    </ul>
+  </div>
+</nav>
+<!--  <div class="dropdown" >
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Select City
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li ng-repeat="x in foos" ng-model="x.realestateSummary.address.city"><a href="#">{{x.realestateSummary.address.city}}</a></li>
+    </ul>
+</div> -->
+<div class="row">
+    <div class="thumbs">
+        <div class="caption col-md-4" ng-repeat="x in foos| filter: search:strict | orderBy: sortOrder">
+        	<img ng-src="{{x.advertisementAssets.advertisementThumbnails.inventory_m.url}}" alt="{{x.title}}" style="width:100%; height:400px; ">
+        	<div class="overText">{{x.realestateSummary.address.city}}</div>
+         	<div class ="text" style="width:100%;height:20px;">
+	         	<div class="headline" style="position: absolute;left:45px; width: 88%;padding: 20px 0 0 0;">
+	         	{{x.title}}
+	         	</div>
+	         	<br><br><br>
+	         	<p class="street" >{{x.realestateSummary.address.street}}</p><br><br><br>
+	         	<div class="row rent" style="height: 0px;">
+	         	<p class="price col-md-4" style="position: absolute;left:35px;">{{x.advertisementPrice.sellPrice +"\n"+ "Rs."}}</p>
+	         	<p class="col-md-4" style="position: absolute;left:40%;">{{x.realestateSummary.numberOfRooms +"\n" + "zimmer"}}</p>
+	         	<span class="col-md-4" style="left:55%;">| ab 35 m</span>
+        	 	</div> 	
+        	</div>
+    	</div>
+  </div>
+</div>
+<button ng-click="more()">Load More</button>
+</div>
+
+<script src="./Controllers/app.js"></script>
+</body>
+</html>
